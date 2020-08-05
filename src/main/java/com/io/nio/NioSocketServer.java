@@ -62,7 +62,7 @@ public class NioSocketServer {
                                     ServerSocketChannel channel = (ServerSocketChannel) key.channel();
                                     //设置未非阻塞
                                     channel.configureBlocking(false);
-                                    //将此channel注册大豆selector
+                                    //将此channel注册到selector
                                     channel.register(selector, SelectionKey.OP_WRITE|SelectionKey.OP_READ);
                                 }
                                 //可读

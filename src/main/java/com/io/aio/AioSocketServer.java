@@ -26,8 +26,11 @@ public class AioSocketServer {
             public void run() {
                 AsynchronousChannelGroup channelGroup =null;
                 try{
+                    //创建异步管道组，采用4个线程大小的线程池
                     channelGroup = AsynchronousChannelGroup.withThreadPool(Executors.newFixedThreadPool(4));
+                    //服务端socket打开这个管道组并绑定当前端口
                     AsynchronousServerSocketChannel server = AsynchronousServerSocketChannel.open(channelGroup).bind(new InetSocketAddress(Constants.PORT));
+                    //socket接收参数
                     server.accept(null, new CompletionHandler<AsynchronousSocketChannel, AsynchronousServerSocketChannel>() {
                         @Override
                         public void completed(AsynchronousSocketChannel result, AsynchronousServerSocketChannel attachment) {
